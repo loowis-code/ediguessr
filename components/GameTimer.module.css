@@ -1,0 +1,30 @@
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+}
+
+.lowTime {
+  color: #e53e3e;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

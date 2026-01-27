@@ -1,0 +1,67 @@
+.container {
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+  background: #f7fafc;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 0.375rem;
+}
+
+.rank {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e2e8f0;
+  color: #4a5568;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.name {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #2d3748;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  color: #48bb78;
+  font-size: 0.75rem;
+}
+
+.points {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 0.875rem;
+}

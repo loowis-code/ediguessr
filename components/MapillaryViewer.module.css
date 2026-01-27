@@ -1,0 +1,98 @@
+.viewer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.viewer :global(.mapillary-js) {
+  width: 100%;
+  height: 100%;
+}
+
+.loading,
+.error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #1a202c;
+  color: white;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading p {
+  font-size: 1rem;
+  color: #a0aec0;
+}
+
+.error {
+  padding: 2rem;
+  text-align: center;
+}
+
+.errorIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fc8181;
+  margin: 0 0 0.5rem;
+}
+
+.errorHint {
+  font-size: 0.875rem;
+  color: #a0aec0;
+  margin: 0;
+}
+
+.fallbackContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #1a202c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fallbackImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}

@@ -1,0 +1,287 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  color: #2d3748;
+}
+
+.inviteSection {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.inviteCode {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.copyButton {
+  padding: 0.5rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copyButton:hover {
+  background: #5a67d8;
+}
+
+.players {
+  margin-bottom: 1.5rem;
+}
+
+.players h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 1rem;
+}
+
+.playerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 0.5rem;
+}
+
+.playerNumber {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #667eea;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.playerName {
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.settings {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.settings h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 0.75rem;
+}
+
+.settings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings li {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.error {
+  padding: 0.75rem;
+  background: #fed7d7;
+  color: #c53030;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.button,
+.startButton {
+  padding: 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button:hover:not(:disabled),
+.startButton:hover:not(:disabled) {
+  background: #5a67d8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.button:disabled,
+.startButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.startButton {
+  background: #48bb78;
+}
+
+.startButton:hover:not(:disabled) {
+  background: #38a169;
+  box-shadow: 0 10px 20px rgba(72, 187, 120, 0.4);
+}
+
+.waiting {
+  text-align: center;
+  color: #718096;
+  font-style: italic;
+  margin: 1rem 0 0;
+}
+
+.loading {
+  text-align: center;
+  color: #4a5568;
+  font-size: 1.125rem;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .inviteCode {
+    font-size: 1.25rem;
+  }
+
+  .inviteSection {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .copyButton {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.875rem;
+  }
+
+  .button,
+  .startButton {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 0.5rem;
+  }
+
+  .container {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .inviteCode {
+    font-size: 1.125rem;
+  }
+
+  .playerName {
+    font-size: 0.9375rem;
+  }
+
+  .settings li {
+    font-size: 0.8125rem;
+  }
+}

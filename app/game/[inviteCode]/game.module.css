@@ -1,0 +1,159 @@
+.main {
+  height: 100vh;
+  overflow: hidden;
+  background: #1a202c;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.gameContainer {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  height: 100vh;
+  gap: 0;
+}
+
+.streetView {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.controls {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.roundInfo {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.mapContainer {
+  flex: 1;
+  position: relative;
+  min-height: 300px;
+}
+
+.actions {
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.error {
+  padding: 0.75rem;
+  background: #fed7d7;
+  color: #c53030;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: #48bb78;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #38a169;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(72, 187, 120, 0.4);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .gameContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+  }
+
+  .streetView {
+    height: 60vh;
+  }
+
+  .controls {
+    height: 40vh;
+    max-height: 40vh;
+  }
+
+  .topBar {
+    padding: 0.75rem;
+  }
+
+  .roundInfo {
+    font-size: 0.875rem;
+  }
+
+  .mapContainer {
+    min-height: 150px;
+    flex: 1;
+  }
+
+  .actions {
+    padding: 0.75rem;
+  }
+
+  .submitButton {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+  .gameContainer {
+    grid-template-rows: 55vh auto;
+  }
+
+  .streetView {
+    height: 55vh;
+  }
+
+  .controls {
+    height: 45vh;
+    max-height: 45vh;
+  }
+
+  .topBar {
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .roundInfo {
+    font-size: 0.75rem;
+  }
+}
