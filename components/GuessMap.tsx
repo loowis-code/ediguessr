@@ -19,11 +19,6 @@ const Marker = dynamic(
   { ssr: false }
 );
 
-const useMapEvents = dynamic(
-  () => import('react-leaflet').then((mod) => mod.useMapEvents),
-  { ssr: false }
-);
-
 interface GuessMapProps {
   onGuessPlaced: (lat: number, lng: number) => void;
   guessLocation: { lat: number; lng: number } | null;
