@@ -42,31 +42,42 @@ describe('Scoring System', () => {
       expect(points).toBe(5000)
     })
 
-    it('should award nearly full points for very close guesses', () => {
-      const points = calculatePoints(100) // 100 meters
-      expect(points).toBeGreaterThan(4980)
-      expect(points).toBeLessThanOrEqual(5000)
+    it('should award significantly fewer points for close guesses in Edinburgh', () => {
+      const points100m = calculatePoints(100) // ~4678 points
+      const points250m = calculatePoints(250) // ~4325 points
+
+      expect(points100m).toBeLessThan(4800)
+      expect(points100m).toBeGreaterThan(4600)
+
+      expect(points250m).toBeLessThan(4500)
+      expect(points250m).toBeGreaterThan(4200)
     })
 
     it('should award decreasing points for increasing distance', () => {
+      const points500m = calculatePoints(500)
       const points1km = calculatePoints(1000)
-      const points5km = calculatePoints(5000)
-      const points10km = calculatePoints(10000)
+      const points2km = calculatePoints(2000)
 
-      expect(points1km).toBeGreaterThan(points5km)
-      expect(points5km).toBeGreaterThan(points10km)
+      expect(points500m).toBeGreaterThan(points1km)
+      expect(points1km).toBeGreaterThan(points2km)
     })
 
     it('should never award negative points', () => {
-      const pointsVeryFar = calculatePoints(1000000) // 1000km
+      const pointsVeryFar = calculatePoints(100000) // 100km
       expect(pointsVeryFar).toBeGreaterThanOrEqual(0)
     })
 
-    it('should award high points for short distances', () => {
+    it('should award approximately 2500 points for 1km distance (stricter)', () => {
       const points = calculatePoints(1000)
-      // Should be close to max points for 1km
-      expect(points).toBeGreaterThan(4900)
-      expect(points).toBeLessThanOrEqual(5000)
+      // Stricter scoring for Edinburgh's compact size
+      expect(points).toBeGreaterThan(2400)
+      expect(points).toBeLessThan(2700)
+    })
+
+    it('should award very low points for 5km+ distances', () => {
+      const points5km = calculatePoints(5000)
+      // Should be less than 500 points for being 5km off in Edinburgh
+      expect(points5km).toBeLessThan(500)
     })
   })
 })

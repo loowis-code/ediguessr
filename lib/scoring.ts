@@ -2,14 +2,25 @@ import { MAX_POINTS } from './constants';
 
 /**
  * Calculate points based on distance from actual location
- * Uses exponential decay similar to GeoGuessr
+ * Stricter scoring tuned for Edinburgh's compact size (~10km across)
+ *
+ * Score reference for Edinburgh:
+ * - 0m = 5000 points (perfect)
+ * - 100m = ~4758 points (same street)
+ * - 250m = ~4425 points (couple blocks)
+ * - 500m = ~3935 points (different neighborhood)
+ * - 1km = ~3033 points (across town)
+ * - 2km = ~1839 points (wrong side of city)
+ * - 5km = ~440 points (way off)
  *
  * @param distanceMeters - Distance in meters between guess and actual location
  * @returns Points awarded (0-5000)
  */
 export function calculatePoints(distanceMeters: number): number {
   const distanceKm = distanceMeters / 1000;
-  const points = Math.round(MAX_POINTS * Math.exp(-distanceKm / 2000));
+  // Much stricter decay for Edinburgh's compact size
+  // Using /1.5 instead of /2000 makes distance matter much more
+  const points = Math.round(MAX_POINTS * Math.exp(-distanceKm / 1.5));
   return Math.max(0, Math.min(MAX_POINTS, points));
 }
 
