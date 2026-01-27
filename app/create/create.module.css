@@ -4,24 +4,25 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0ea5e9; /* Bright cyan */
 }
 
 .container {
   max-width: 500px;
   width: 100%;
   background: white;
-  border-radius: 1rem;
+  border: 4px solid black;
+  box-shadow: 12px 12px 0 black;
   padding: 2rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 900;
   margin: 0 0 2rem;
   text-align: center;
-  color: #2d3748;
+  color: black;
+  text-transform: uppercase;
 }
 
 .form {
@@ -37,22 +38,24 @@
 }
 
 .field label {
-  font-weight: 600;
-  color: #4a5568;
+  font-weight: 900;
+  color: black;
   font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .input {
   padding: 0.75rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 0.5rem;
+  border: 4px solid black;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  font-weight: 700;
+  background: white;
 }
 
 .input:focus {
   outline: none;
-  border-color: #667eea;
+  background: #fde047; /* Yellow highlight */
 }
 
 .checkboxGroup {
@@ -60,8 +63,8 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
-  background: #f7fafc;
-  border-radius: 0.5rem;
+  background: #f0f0f0;
+  border: 4px solid black;
 }
 
 .checkbox {
@@ -73,41 +76,50 @@
 }
 
 .checkbox input[type='checkbox'] {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
+  border: 3px solid black;
 }
 
 .checkbox span {
-  color: #4a5568;
+  color: black;
   font-size: 0.9375rem;
+  font-weight: 700;
 }
 
 .error {
   padding: 0.75rem;
-  background: #fed7d7;
-  color: #c53030;
-  border-radius: 0.5rem;
+  background: #fca5a5;
+  color: black;
+  border: 4px solid black;
   font-size: 0.875rem;
   text-align: center;
+  font-weight: 700;
 }
 
 .submitButton {
   padding: 1rem;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
+  background: #22c55e; /* Bright green */
+  color: black;
+  border: 4px solid black;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 900;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.1s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 6px 6px 0 black;
 }
 
 .submitButton:hover:not(:disabled) {
-  background: #5a67d8;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 black;
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 black;
 }
 
 .submitButton:disabled {

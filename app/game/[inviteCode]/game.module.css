@@ -1,7 +1,7 @@
 .main {
   height: 100vh;
   overflow: hidden;
-  background: #1a202c;
+  background: black;
 }
 
 .loading {
@@ -9,15 +9,19 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: white;
+  color: #fde047;
   font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .gameContainer {
   display: grid;
   grid-template-columns: 1fr 400px;
   height: 100vh;
-  gap: 0;
+  gap: 4px;
+  background: black;
+  padding: 4px;
 }
 
 .streetView {
@@ -25,13 +29,15 @@
   width: 100%;
   height: 100%;
   background: #000;
+  border: 4px solid black;
 }
 
 .controls {
   background: white;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  border: 4px solid black;
 }
 
 .topBar {
@@ -39,64 +45,75 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: #f7fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: #fde047;
+  border-bottom: 4px solid black;
 }
 
 .roundInfo {
-  font-weight: 600;
-  color: #4a5568;
+  font-weight: 900;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .mapContainer {
   flex: 1;
   position: relative;
   min-height: 300px;
+  border-bottom: 4px solid black;
 }
 
 .actions {
   padding: 1rem;
-  border-top: 1px solid #e2e8f0;
+  background: white;
 }
 
 .error {
   padding: 0.75rem;
-  background: #fed7d7;
-  color: #c53030;
-  border-radius: 0.5rem;
+  background: #fca5a5;
+  color: black;
+  border: 4px solid black;
   font-size: 0.875rem;
   text-align: center;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .submitButton {
   width: 100%;
   padding: 1rem;
-  background: #48bb78;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
+  background: #22c55e;
+  color: black;
+  border: 4px solid black;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 900;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.1s;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0 black;
 }
 
 .submitButton:hover:not(:disabled) {
-  background: #38a169;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(72, 187, 120, 0.4);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 black;
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 black;
 }
 
 .submitButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  background: #d1d5db;
 }
 
 @media (max-width: 768px) {
   .gameContainer {
     grid-template-columns: 1fr;
     grid-template-rows: 60vh auto;
+    gap: 4px;
   }
 
   .streetView {
@@ -128,6 +145,11 @@
   .submitButton {
     padding: 0.875rem;
     font-size: 1rem;
+    box-shadow: 4px 4px 0 black;
+  }
+
+  .submitButton:hover:not(:disabled) {
+    box-shadow: 6px 6px 0 black;
   }
 }
 
