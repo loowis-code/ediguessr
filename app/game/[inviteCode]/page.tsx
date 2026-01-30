@@ -162,9 +162,24 @@ export default function GamePage() {
   }, [router, inviteCode]);
 
   // Handle guess submitted (from other players)
-  const handleGuessSubmitted = useCallback(() => {
-    // Could add a visual indicator that another player has guessed
-  }, []);
+  const handleGuessSubmitted = useCallback(async () => {
+    // Fetch updated guesses for the current round
+    if (!currentRound || !game) return;
+
+    try {
+      const response = await fetch(`/api/games/${game.id}/guesses`);
+      if (response.ok) {
+        const data = await response.json();
+        // Filter guesses for current round only
+        const roundGuesses = (data.guesses || []).filter(
+          (g: Guess) => g.round_id === currentRound.id
+        );
+        setGuesses(roundGuesses);
+      }
+    } catch (error) {
+      console.error('Error fetching updated guesses:', error);
+    }
+  }, [currentRound, game]);
 
   useGameEvent(game?.id || null, PUSHER_EVENTS.ROUND_STARTED, handleRoundStarted);
   useGameEvent(game?.id || null, PUSHER_EVENTS.GAME_ENDED, handleGameEnded);
@@ -216,6 +231,7 @@ export default function GamePage() {
           isCreator={isCreator}
           onNextRound={handleNextRound}
           isLastRound={currentRound.round_number >= game.settings.rounds}
+          gameId={game.id}
         />
       </main>
     );

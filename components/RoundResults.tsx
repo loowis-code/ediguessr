@@ -28,11 +28,12 @@ const Polyline = dynamic(
 
 interface RoundResultsProps {
   round: Round;
-  guesses: Guess[];
+  guesses: Guess[]; // Guesses for current round only
   players: Player[];
   isCreator: boolean;
   onNextRound: () => void;
   isLastRound: boolean;
+  gameId: string; // Need this to fetch all guesses
 }
 
 export default function RoundResults({
@@ -41,9 +42,11 @@ export default function RoundResults({
   players,
   isCreator,
   onNextRound,
-  isLastRound
+  isLastRound,
+  gameId
 }: RoundResultsProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const [allGuesses, setAllGuesses] = useState<Guess[]>([]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -58,6 +61,23 @@ export default function RoundResults({
       });
     }
   }, []);
+
+  // Fetch all guesses for cumulative scores
+  useEffect(() => {
+    const fetchAllGuesses = async () => {
+      try {
+        const response = await fetch(`/api/games/${gameId}/guesses`);
+        if (response.ok) {
+          const data = await response.json();
+          setAllGuesses(data.guesses || []);
+        }
+      } catch (error) {
+        console.error('Error fetching all guesses:', error);
+      }
+    };
+
+    fetchAllGuesses();
+  }, [gameId, round.id]); // Refetch when round changes
 
   // Match guesses with player names
   const guessesWithPlayers = guesses.map((guess) => {
@@ -82,9 +102,24 @@ export default function RoundResults({
       submitted_at: ''
     }));
 
-  // Combine and sort by points descending
-  const allResults = [...guessesWithPlayers, ...playersWhoDidntGuess];
-  allResults.sort((a, b) => b.points - a.points);
+  // Calculate cumulative scores for each player
+  const playerTotalScores = new Map<string, number>();
+  allGuesses.forEach(guess => {
+    const currentTotal = playerTotalScores.get(guess.player_id) || 0;
+    playerTotalScores.set(guess.player_id, currentTotal + guess.points);
+  });
+
+  // Combine and add cumulative scores
+  const allResults = [...guessesWithPlayers, ...playersWhoDidntGuess].map(result => ({
+    ...result,
+    totalScore: playerTotalScores.get(result.player_id) || 0
+  }));
+
+  // Sort by cumulative total score descending
+  allResults.sort((a, b) => b.totalScore - a.totalScore);
+
+  // Check if all players have guessed (for enabling next round button)
+  const allPlayersGuessed = guesses.length >= players.length;
 
   if (!isMounted) {
     return <div className={styles.loading}>Loading results...</div>;
@@ -138,27 +173,44 @@ export default function RoundResults({
       </div>
 
       <div className={styles.results}>
-        <h3>Scores</h3>
+        <h3>Leaderboard</h3>
         <ul className={styles.list}>
           {allResults.map((guess, index) => (
             <li key={guess.id} className={styles.item}>
               <span className={styles.rank}>{index + 1}</span>
-              <span className={styles.name}>{guess.playerName}</span>
-              <span className={styles.distance}>
-                {guess.points === 0 ? 'No guess' : formatDistance(guess.distance_meters)}
-              </span>
-              <span className={styles.points}>
-                {guess.points > 0 ? `+${guess.points.toLocaleString()}` : '0'}
-              </span>
+              <div className={styles.playerInfo}>
+                <span className={styles.name}>{guess.playerName}</span>
+                <span className={styles.distance}>
+                  {guess.points === 0 ? 'No guess' : formatDistance(guess.distance_meters)}
+                </span>
+              </div>
+              <div className={styles.scoreInfo}>
+                <span className={styles.roundPoints}>
+                  {guess.points > 0 ? `+${guess.points.toLocaleString()}` : '0'}
+                </span>
+                <span className={styles.totalScore}>
+                  {guess.totalScore.toLocaleString()} total
+                </span>
+              </div>
             </li>
           ))}
         </ul>
       </div>
 
       {isCreator && (
-        <button onClick={onNextRound} className={styles.nextButton}>
+        <button
+          onClick={onNextRound}
+          className={styles.nextButton}
+          disabled={!allPlayersGuessed}
+        >
           {isLastRound ? 'View Final Results' : 'Next Round'}
         </button>
+      )}
+
+      {isCreator && !allPlayersGuessed && (
+        <p className={styles.waiting}>
+          Waiting for all players to guess... ({guesses.length}/{players.length})
+        </p>
       )}
 
       {!isCreator && (
