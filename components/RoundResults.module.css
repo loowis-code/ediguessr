@@ -1,9 +1,9 @@
 .container {
   padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
   overflow-y: auto;
   max-height: 100vh;
+  background: #fde047; /* Bright yellow neobrutalist background */
+  min-height: 100vh;
 }
 
 .loading {
