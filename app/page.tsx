@@ -23,15 +23,24 @@ export default function Home() {
 
         <div className={styles.features}>
           <div className={styles.feature}>
-            <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edinburgh Only</h3>
+            <h3>
+              <span className={styles.emoji}>🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+              <span>Edinburgh Only</span>
+            </h3>
             <p>All locations within Scotland's capital city</p>
           </div>
           <div className={styles.feature}>
-            <h3>👥 Multiplayer</h3>
+            <h3>
+              <span className={styles.emoji}>👥</span>
+              <span>Multiplayer</span>
+            </h3>
             <p>Play with friends in real-time</p>
           </div>
           <div className={styles.feature}>
-            <h3>🎮 Free</h3>
+            <h3>
+              <span className={styles.emoji}>🎮</span>
+              <span>Free</span>
+            </h3>
             <p>No sign-up required, completely free</p>
           </div>
         </div>
